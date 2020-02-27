@@ -33,7 +33,7 @@
     <div class="col-lg-4 col-sm-6 col-xs-12">
       <section>
         <?php
-        $sql = "SELECT character_number,name,introduction,image From p5 ORDER BY character_number";
+        $sql = "SELECT character_number,name,introduction,image From character_p5 ORDER BY character_number";
         $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
