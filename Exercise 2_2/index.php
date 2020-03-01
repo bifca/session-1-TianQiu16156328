@@ -19,77 +19,33 @@
   <title>Persona 5</title>
 </head>
 
-<div class="none">
    <?php //Perform database query
     require "config.php";  // This will import our configuration and set the vairables within the PHP
     //Set the SQL query
     ?>
-</div>
 
 <body>
-<div class="container">
-  <h2>Main Character</h2>
-  <div class="row">
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <section>
-        <?php
-        $sql = "SELECT character_number,name,introduction,image From character_p5 ORDER BY character_number";
-        $result = mysqli_query($conn, $sql);
+  <?php
+    $sql = "SELECT * From character_p5 ORDER BY character_number";
+    $result = $conn->query($sql);
     if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
+      echo '<div class="container">
+              <h2>Main Character</h2>
+                <div class="row">';
+      $count = 0;
+      while ($row = $result->fetch_assoc()) {
+        $count = $count + 2;
+          echo '<div class="col-lg-4 col-sm-6 col-xs-12"><section>';
           echo '<img src="'.$row["image"].'" class="img-thumbnail" alt="image" />'; //display image
           echo '<h3>'.$row["name"].'</h3><br><p>'.$row["introduction"].'</p><br>';
+          echo '</section></div>';
+          if ($count == 12){
+            echo '</div><div class="row">';
+          }
         }
       }
-      else {
-         echo "Error.";
-         //if the browser cen't load the video, the sentence will be shown
-      }
-        ?>
-      </section>
-    </div>
-
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-     <section>
-       <img src="images/02.png" class="img-thumbnail"  alt="image">
-       <h3>Ryuji Sakamoto</h3>
-       <p>A 16-year-old who studied in high school with the protagonist.</p>
-     </section>
-   </div>
-
-   <div class="col-lg-4 col-sm-6 col-xs-12">
-     <section>
-       <img src="images/03.png" class="img-thumbnail"  alt="image">
-       <h3>Morgana</h3>
-       <p>In a different world, he accidentally helps the protagonist.</p>
-     </section>
-   </div>
-
-   <div class="col-lg-4 col-sm-6 col-xs-12">
-     <section>
-       <img src="images/04.png" class="img-thumbnail"  alt="image">
-       <h3>Ann Takamaki</h3>
-       <p>Innocent High school students.</p>
-     </section>
-   </div>
-
-   <div class="col-lg-4 col-sm-6 col-xs-12">
-     <section>
-       <img src="images/05.png" class="img-thumbnail" alt="image">
-       <h3>Yusuke Kitagawa</h3>
-       <p>Good at art.</p>
-     </section>
-   </div>
-
-   <div class="col-lg-4 col-sm-6 col-xs-12">
-     <section>
-       <img src="images/06.png" class="img-thumbnail" alt="image">
-       <h3>Makoto Niijima</h3>
-       <p>Student president.</p>
-     </section>
-   </div>
-   </div><!-- row -->
- </div><!-- content container -->
-
+      echo '</div>';//content container
+      $conn->close();
+  ?>
 </body>
 </html>
