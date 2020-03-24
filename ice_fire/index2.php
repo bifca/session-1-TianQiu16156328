@@ -30,6 +30,7 @@
 
   <div class='container'>
   	<?php 
+    // $book has returned more than 1 result, under the old system we would only display 1 book, under this system we will display multiple books using a foreach loop. 
     foreach ($book AS $b){
     ?>
     <div class='row'>
