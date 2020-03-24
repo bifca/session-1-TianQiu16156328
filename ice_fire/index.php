@@ -23,7 +23,7 @@
 <body>
   <?php
 
-  $curl = file_get_contents("https://www.anapioficeandfire.com/api/books/1");
+  $curl = file_get_contents("https://www.anapioficeandfire.com/api/books");
 
   $book = json_decode($curl);
    ?>
@@ -32,8 +32,8 @@
   	<div class='row'>
   		<div class='col-12 col-md-3'>
   			<?php
-  				echo '<h3>'.$book->name.'</h3>';
-  				echo '<p><strong>isbn:</strong>'.$book->isbn.'<strong></br>authors:</strong>'.$book->authors[0].'<strong></br>publisher:</strong>'.$book->publisher.'</p>';
+  				echo '<h3>'.$book[0]->name.'</h3>';
+  				echo '<p><strong>isbn:</strong>'.$book[0]->isbn.'<strong></br>authors:</strong>'.$book[0]->authors[0].'<strong></br>publisher:</strong>'.$book[0]->publisher.'</p>';
   			?>
   		</div>
   	</div>
